@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="Model.User"%>
+<%@page import="Model.User"%>
 <%
-         User auth = (User) request.getSession().getAttribute("auth");
-         if (auth != null) {
-         request.setAttribute("person", auth);
-            }
-         
+    User auth = (User) request.getSession().getAttribute("auth");
+    if (auth != null) {
+        request.setAttribute("person", auth);
+    }
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +40,8 @@
                     </div>
                     <div class="card-body">
                         <a href="AddProduct.jsp" class="btn btn-success w-100 mb-2">Add New Products</a>
-                        <a href="DelProduct.jsp" class="btn btn-danger w-100">Delete Products</a>
+                        <a href="DelProduct.jsp" class="btn btn-danger w-100 mb-2">Delete Products</a>
+                        <a href="UpdateProduct.jsp" class="btn btn-warning w-100">Update Products</a>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,8 @@
                     </div>
                     <div class="card-body">
                         <a href="AddUser.jsp" class="btn btn-success w-100 mb-2">Add New Users</a>
-                        <a href="DelUser.jsp" class="btn btn-danger w-100">Delete Users</a>
+                        <a href="DelUser.jsp" class="btn btn-danger w-100 mb-2">Delete Users</a>
+                        <a href="UpdateUser.jsp" class="btn btn-warning w-100">Update Users</a>
                     </div>
                 </div>
             </div>

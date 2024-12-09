@@ -101,4 +101,44 @@ public boolean deleteUserById(int id) {
         e.printStackTrace();
     }
     return isDeleted;
+}
+public User getSingleUser(int id) {
+	 User row = null;
+       try {
+           query = "select * from users where id=? ";
+
+           pst = this.con.prepareStatement(query);
+           pst.setInt(1, id);
+           ResultSet rs = pst.executeQuery();
+
+           while (rs.next()) {
+           	row = new User();
+               row.setId(rs.getInt("id"));
+               row.setName(rs.getString("name"));
+               row.setEmail(rs.getString("email"));
+               row.setPassword(rs.getString("password"));
+           }
+       } catch (Exception e) {
+           e.printStackTrace();
+           System.out.println(e.getMessage());
+       }
+
+       return row;
+   }
+
+public boolean updateUser(int id, String name, String email, String password) {
+	boolean isUpdated = false;
+    String query = "UPDATE users SET name=?, email=?,  password=? WHERE id=?";
+    try (PreparedStatement pst = this.con.prepareStatement(query)) {
+        pst.setString(1, name);
+        pst.setString(2, email);
+        pst.setString(3, password);
+        pst.setInt(4, id);
+
+        int rowsAffected = pst.executeUpdate();
+        isUpdated = rowsAffected > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return isUpdated;
 }}

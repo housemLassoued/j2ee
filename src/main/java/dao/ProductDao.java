@@ -148,6 +148,23 @@ public class ProductDao {
 	        }
 	        return isDeleted;
 	}
+	public boolean updateProduct(int id, String name, String category, double price, String image) {
+		 boolean isUpdated = false;
+		    String query = "UPDATE products SET name=?, category=?, price=?, image=? WHERE id=?";
+		    try (PreparedStatement pst = this.con.prepareStatement(query)) {
+		        pst.setString(1, name);
+		        pst.setString(2, category);
+		        pst.setDouble(3, price);
+		        pst.setString(4, image);
+		        pst.setInt(5, id);
+
+		        int rowsAffected = pst.executeUpdate();
+		        isUpdated = rowsAffected > 0;
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		    return isUpdated;
+	}
 	
         }
 	
